@@ -1,1 +1,4 @@
 /.env*
+
+oracle_private_key
+caller_private_key
