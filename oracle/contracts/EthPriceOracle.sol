@@ -12,7 +12,15 @@ contract EthPriceOracle {
   uint private randNonce = 0;
   uint private modulus = 1000;
   uint private numOracles = 0;
+  uint private THRESHOLD = 0;
   mapping(uint256 => bool) pendingRequests;
+
+  struct Response {
+    address oracleAddress;
+    address callerAddress;
+    uint256 ethPrice;
+  }
+  mapping (uint256=>Response[]) public requestIdToResponse;
 
   event GetLatestEthPriceEvent(address callerAddress, uint id);
   event SetLatestEthPriceEvent(uint256 ethPrice, address callerAddress);
@@ -48,12 +56,24 @@ contract EthPriceOracle {
     return id;
   }
 
-	function setLatestEthPrice(uint256 _ethPrice, address _callerAddress, uint256 _id) public onlyOwner {
+	function setLatestEthPrice(uint256 _ethPrice, address _callerAddress, uint256 _id) public {
+    require(oracles.has(msg.sender), "Not an oracle!");
     require(pendingRequests[_id], "This request is not in my pending list.");
-    delete pendingRequests[_id];
-    CallerContractInterface callerContractInstance;
-    callerContractInstance = CallerContractInterface(_callerAddress);
-    callerContractInstance.callback(_ethPrice, _id);
-    emit SetLatestEthPriceEvent(_ethPrice, _callerAddress);
+    Response memory resp;
+    resp = Response(msg.sender, _callerAddress, _ethPrice);
+    requestIdToResponse[_id].push(resp);
+    uint numResponses = requestIdToResponse[_id].length;
+    if (numResponses == THRESHOLD) {
+      uint computedEthPrice = 0;
+      for (uint f=0; f < requestIdToResponse[_id].length; f++) {
+        computedEthPrice += requestIdToResponse[_id][f].ethPrice;
+      }
+      computedEthPrice = computedEthPrice / numResponses;
+      delete pendingRequests[_id];
+      CallerContracInterface callerContractInstance;
+      callerContractInstance = CallerContracInterface(_callerAddress);
+      callerContractInstance.callback(_ethPrice, _id);
+      emit SetLatestEthPriceEvent(_ethPrice, _callerAddress);
+    }
   }
 }
