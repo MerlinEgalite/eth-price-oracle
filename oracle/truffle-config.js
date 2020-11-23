@@ -36,17 +36,16 @@ module.exports = {
    */
 
   networks: {
-    // Useful for testing. The `development` name is special - truffle uses it by default
-    // if it's defined here and no other network is specified at the command line.
-    // You should run a client (like ganache-cli, geth or parity) in a separate terminal
-    // tab if you use this network and you must also set the `host`, `port` and `network_id`
-    // options below to some value.
-    //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    extdev: {
+      provider: function () {
+        const privateKey = fs.readFileSync(path.join(__dirname, 'oracle_private_key'), 'utf-8')
+        const chainId = 'extdev-plasma-us1'
+        const writeUrl = 'wss://extdev-plasma-us1.dappchains.com/websocket'
+        const readUrl = 'wss://extdev-plasma-us1.dappchains.com/queryws'
+        return new LoomTruffleProvider(chainId, writeUrl, readUrl, privateKey)
+      },
+      network_id: '9545242630824'
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port

@@ -1,15 +1,30 @@
 {
-  "name": "EthPriceOracle",
+  "name": "eth-price-oracle",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:oracle": "cd oracle && npx truffle migrate --network extdev --reset -all && cd ..",
+    "deploy:caller": "cd caller && npx truffle migrate --network extdev --reset -all && cd ..",
+    "deploy:all": "npm run deploy:oracle && npm run deploy:caller"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MerlinEgalite/eth-price-oracle.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MerlinEgalite/eth-price-oracle/issues"
+  },
+  "homepage": "https://github.com/MerlinEgalite/eth-price-oracle#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^3.2.0"
+    "@openzeppelin/contracts": "^3.2.0",
+    "axios": "^0.21.0",
+    "bn.js": "^5.1.3",
+    "loom-js": "^1.18.0",
+    "loom-truffle-provider": "^0.1.0"
   }
 }

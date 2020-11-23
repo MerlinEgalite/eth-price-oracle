@@ -20,15 +20,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_ethPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"callback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/merlinegalite/Desktop/Blockchain/Learn/EthPriceOracle/oracle/contracts/CallerContractInterface.sol\":\"CallerContractInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/merlinegalite/Desktop/Blockchain/Learn/EthPriceOracle/oracle/contracts/CallerContractInterface.sol\":{\"keccak256\":\"0x70869fa372633e1b3213ec5b1d468b53237dfb86ae29a99007eba11a1206bf6d\",\"urls\":[\"bzz-raw://450d3a07f031cd797ca78fb92c2bf4abfc72d4c364619013e1c504a666c9468e\",\"dweb:/ipfs/QmQo8tMPjH1kHozSmEgTGbfPQAS4pgbQnxdn2HefHSfcK6\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_ethPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"callback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/merlinegalite/Desktop/Blockchain/Learn/eth-price-oracle/oracle/contracts/CallerContractInterface.sol\":\"CallerContractInterface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/merlinegalite/Desktop/Blockchain/Learn/eth-price-oracle/oracle/contracts/CallerContractInterface.sol\":{\"keccak256\":\"0x70869fa372633e1b3213ec5b1d468b53237dfb86ae29a99007eba11a1206bf6d\",\"urls\":[\"bzz-raw://450d3a07f031cd797ca78fb92c2bf4abfc72d4c364619013e1c504a666c9468e\",\"dweb:/ipfs/QmQo8tMPjH1kHozSmEgTGbfPQAS4pgbQnxdn2HefHSfcK6\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.4.22 <0.8.0;\n\ninterface CallerContractInterface {\n  function callback(uint256 _ethPrice, uint256 id) external;\n}\n",
-  "sourcePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/EthPriceOracle/oracle/contracts/CallerContractInterface.sol",
+  "sourcePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/eth-price-oracle/oracle/contracts/CallerContractInterface.sol",
   "ast": {
-    "absolutePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/EthPriceOracle/oracle/contracts/CallerContractInterface.sol",
+    "absolutePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/eth-price-oracle/oracle/contracts/CallerContractInterface.sol",
     "exportedSymbols": {
       "CallerContractInterface": [
         9
@@ -157,7 +157,7 @@
     "src": "0:133:0"
   },
   "legacyAST": {
-    "absolutePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/EthPriceOracle/oracle/contracts/CallerContractInterface.sol",
+    "absolutePath": "/Users/merlinegalite/Desktop/Blockchain/Learn/eth-price-oracle/oracle/contracts/CallerContractInterface.sol",
     "exportedSymbols": {
       "CallerContractInterface": [
         9
@@ -291,7 +291,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.4",
-  "updatedAt": "2020-11-22T14:17:06.933Z",
+  "updatedAt": "2020-11-22T16:58:31.115Z",
   "devdoc": {
     "methods": {}
   },
