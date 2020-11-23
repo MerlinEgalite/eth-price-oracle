@@ -23,6 +23,9 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const path = require('path');
+const LoomTruffleProvider = require('loom-truffle-provider');
 
 module.exports = {
   /**
@@ -44,7 +47,7 @@ module.exports = {
         const readUrl = 'wss://extdev-plasma-us1.dappchains.com/queryws'
         return new LoomTruffleProvider(chainId, writeUrl, readUrl, privateKey)
       },
-      network_id: '9545242630824'
+      network_id: '474747'
     }
     // Another network with more advanced options...
     // advanced: {
@@ -81,7 +84,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.6.0",   // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.6.2",   // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
