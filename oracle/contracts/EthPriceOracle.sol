@@ -6,9 +6,11 @@ import "./CallerContractInterface.sol";
 contract EthPriceOracle {
 
   using Roles for Roles.Role;
+  using SafeMath for uint256;
 
   Roles.Roles private owner;
   Roles.Roles private oracles;
+
   uint private randNonce = 0;
   uint private modulus = 1000;
   uint private numOracles = 0;
@@ -65,15 +67,16 @@ contract EthPriceOracle {
     uint numResponses = requestIdToResponse[_id].length;
     if (numResponses == THRESHOLD) {
       uint computedEthPrice = 0;
-      for (uint f=0; f < requestIdToResponse[_id].length; f++) {
-        computedEthPrice += requestIdToResponse[_id][f].ethPrice;
+        for (uint f=0; f < requestIdToResponse[_id].length; f++) {
+        computedEthPrice = computedEthPrice.add(requestIdToResponse[_id][f].ethPrice);
       }
-      computedEthPrice = computedEthPrice / numResponses;
+      computedEthPrice = computedEthPrice.div(numResponses);
       delete pendingRequests[_id];
+      delete requestIdToResponse[_id];
       CallerContracInterface callerContractInstance;
       callerContractInstance = CallerContracInterface(_callerAddress);
-      callerContractInstance.callback(_ethPrice, _id);
-      emit SetLatestEthPriceEvent(_ethPrice, _callerAddress);
+      callerContractInstance.callback(computedEthPrice, _id);
+      emit SetLatestEthPriceEvent(computedEthPrice, _callerAddress);
     }
   }
 }
