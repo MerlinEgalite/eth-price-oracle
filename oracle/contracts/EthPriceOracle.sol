@@ -50,7 +50,7 @@ contract EthPriceOracle {
     emit RemoveOracleEvent(_oracle);
   }
 
-	function getLatestEthPrice() public returns(uint256) {
+	function getLatestEthPrice () public returns(uint256) {
 		randNonce++;
 		uint id = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % modulus;
 		pendingRequests[id] = true;
@@ -58,7 +58,7 @@ contract EthPriceOracle {
     return id;
   }
 
-	function setLatestEthPrice(uint256 _ethPrice, address _callerAddress, uint256 _id) public {
+	function setLatestEthPrice (uint256 _ethPrice, address _callerAddress, uint256 _id) public {
     require(oracles.has(msg.sender), "Not an oracle!");
     require(pendingRequests[_id], "This request is not in my pending list.");
     Response memory resp;
@@ -67,8 +67,8 @@ contract EthPriceOracle {
     uint numResponses = requestIdToResponse[_id].length;
     if (numResponses == THRESHOLD) {
       uint computedEthPrice = 0;
-        for (uint f=0; f < requestIdToResponse[_id].length; f++) {
-        computedEthPrice = computedEthPrice.add(requestIdToResponse[_id][f].ethPrice);
+        for (uint i=0; i < requestIdToResponse[_id].length; f++) {
+        computedEthPrice = computedEthPrice.add(requestIdToResponse[_id][i].ethPrice);
       }
       computedEthPrice = computedEthPrice.div(numResponses);
       delete pendingRequests[_id];
