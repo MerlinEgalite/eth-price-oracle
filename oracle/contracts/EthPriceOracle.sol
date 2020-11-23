@@ -1,16 +1,32 @@
 pragma solidity >=0.4.22 <0.8.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Roles.sol";
 import "./CallerContractInterface.sol";
 
-contract EthPriceOracle is Ownable {
+contract EthPriceOracle {
 
+  using Roles for Roles.Role;
+
+  Roles.Roles private owner;
+  Roles.Roles private oracles;
   uint private randNonce = 0;
   uint private modulus = 1000;
   mapping(uint256 => bool) pendingRequests;
 
   event GetLatestEthPriceEvent(address callerAddress, uint id);
   event SetLatestEthPriceEvent(uint256 ethPrice, address callerAddress);
+  event AddOracleEvent(address oracleAddress);
+
+  constructor (address _owner) public {
+    owners.add(_owner);
+  }
+
+  function addOracle (address _oracle) public {
+    require(owners.has(msg.sender), "Not an owner!");
+    require(!oracles.has(_oracle), "Already an oracle!");
+    oracles.add(_oracle);
+    emit AddOracleEvent(_oracle);
+  }
 
 	function getLatestEthPrice() public returns(uint256) {
 		randNonce++;
